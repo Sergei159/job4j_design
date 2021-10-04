@@ -23,7 +23,6 @@ public class EvenNumbersIt implements Iterator<Integer> {
             }
         return index < data.length;
     }
-
     /**
      * Returns the next even element in the iteration.
      * @return the next even element in the iteration.
