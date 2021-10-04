@@ -12,19 +12,26 @@ public class EvenNumbersIt implements Iterator<Integer> {
         this.data = data;
     }
 
+    /**
+     *Returns true if the iteration has more even elements
+     * @return true if the iteration has more even elements
+     */
     @Override
     public boolean hasNext() {
-        int count = 0;
-        for (int i = index; i < data.length; i++) {
-            if (data[i] % 2 == 0) {
-                index = i;
-                count++;
-                break;
+        while (index < data.length) {
+            if (data[index] % 2 == 0) {
+                return true;
             }
+            index++;
         }
-        return count > 0;
-
+        return false;
     }
+
+    /**
+     * Returns the next even element in the iteration.
+     * @return the next even element in the iteration.
+     * Throws: NoSuchElementException – if the iteration has no more even elements
+     */
 
     @Override
     public Integer next() {
@@ -33,5 +40,4 @@ public class EvenNumbersIt implements Iterator<Integer> {
         }
         return data[index++];
     }
-
 }
