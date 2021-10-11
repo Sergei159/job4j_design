@@ -3,6 +3,7 @@ package ru.job4j.generics;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Generics {
     public static void main(String[] args) {
