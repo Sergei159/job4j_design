@@ -4,8 +4,8 @@ import java.util.*;
 
 public class SimpleLinkedList<E> implements List<E> {
 
-    private int modCount = 0;
-    private int size = 0;
+    private int modCount;
+    private int size;
     private Node<E> first;
     private Node<E> last;
 
@@ -21,13 +21,13 @@ public class SimpleLinkedList<E> implements List<E> {
 
     @Override
     public void add(E value) {
-        final Node<E> l = last;
+        final Node<E> last = this.last;
         final Node<E> newNode = new Node<>(value, null);
-        last = newNode;
-        if (l == null) {
+        this.last = newNode;
+        if (last == null) {
             first = newNode;
         } else {
-            l.next = newNode;
+            last.next = newNode;
         }
         size++;
         modCount++;
@@ -36,12 +36,12 @@ public class SimpleLinkedList<E> implements List<E> {
     @Override
     public E get(int index) {
         Objects.checkIndex(index, size);
-        Node<E> x;
-        x = first;
+        Node<E> rsl;
+        rsl = first;
         for (int i = 0; i < index; i++) {
-            x = x.next;
+            rsl = rsl.next;
         }
-        return x.item;
+        return rsl.item;
     }
 
     @Override
