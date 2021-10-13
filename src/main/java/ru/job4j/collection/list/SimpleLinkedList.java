@@ -12,19 +12,17 @@ public class SimpleLinkedList<E> implements List<E> {
     private static class Node<E> {
         E item;
         Node<E> next;
-        Node<E> prev;
 
-        Node(Node<E> prev, E element, Node<E> next) {
+        Node(E element, Node<E> next) {
             this.item = element;
             this.next = next;
-            this.prev = prev;
         }
     }
 
     @Override
     public void add(E value) {
         final Node<E> l = last;
-        final Node<E> newNode = new Node<>(l, value, null);
+        final Node<E> newNode = new Node<>(value, null);
         last = newNode;
         if (l == null) {
             first = newNode;
@@ -38,23 +36,12 @@ public class SimpleLinkedList<E> implements List<E> {
     @Override
     public E get(int index) {
         Objects.checkIndex(index, size);
-        return node(index).item;
-    }
-
-    public Node<E> node(int index) {
         Node<E> x;
-        if (index < (size >> 1)) {
-            x = first;
-            for (int i = 0; i < index; i++) {
-                x = x.next;
-            }
-        } else {
-            x = last;
-            for (int i = size - 1; i > index; i--) {
-                x = x.prev;
-            }
+        x = first;
+        for (int i = 0; i < index; i++) {
+            x = x.next;
         }
-        return x;
+        return x.item;
     }
 
     @Override
@@ -82,4 +69,5 @@ public class SimpleLinkedList<E> implements List<E> {
             }
         };
     }
+
 }
