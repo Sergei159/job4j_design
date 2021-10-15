@@ -1,23 +1,22 @@
 package ru.job4j.collection;
 
-import java.util.NoSuchElementException;
-import java.util.LinkedList;
-
 public class SimpleStack<T> {
     private Node<T> head;
-    private Node<T> tail;
+    private int size;
     private  ForwardLinked<T>  linked = new ForwardLinked<T>();
 
     public T pop() {
+        size--;
         return linked.deleteLast();
     }
 
     public void push(T value) {
         linked.addFirst(value);
+        size++;
     }
 
     public boolean isEmpty() {
-        return head == null;
+        return size == 0;
     }
 
     private static class Node<T> {

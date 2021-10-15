@@ -1,9 +1,6 @@
 package ru.job4j.collection;
 
-/**
- *  Метод работает по принципу
- * @param <T>
- */
+
 public class SimpleQueue<T> {
     private final SimpleStack<T> in = new SimpleStack<>();
     private final SimpleStack<T> out = new SimpleStack<>();
