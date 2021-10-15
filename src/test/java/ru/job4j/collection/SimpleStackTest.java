@@ -28,8 +28,6 @@ public class SimpleStackTest {
         SimpleStack<Integer> stack = new SimpleStack<>();
         stack.push(1);
         stack.push(2);
-        stack.push(3);
-        stack.pop();
         stack.pop();
         assertThat(stack.pop(), is(1));
     }

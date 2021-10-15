@@ -9,33 +9,11 @@ public class SimpleStack<T> {
     private  ForwardLinked<T>  linked = new ForwardLinked<T>();
 
     public T pop() {
-        if (tail == null) {
-            throw new NoSuchElementException();
-        }
-        final T deleted = tail.value;
-        if (tail == head) {
-            head = null;
-            tail = null;
-        } else {
-            Node<T> newTail = head;
-            while (newTail.next != tail) {
-                newTail = newTail.next;
-            }
-            newTail.next = null;
-            tail = newTail;
-        }
-        return deleted;
+        return linked.deleteLast();
     }
 
     public void push(T value) {
-        Node<T> node = new Node<T>(value, null);
-        if (head == null) {
-            head = node;
-            tail = node;
-        } else {
-            tail.next = node;
-            tail = node;
-        }
+        linked.addFirst(value);
     }
 
     public boolean isEmpty() {
