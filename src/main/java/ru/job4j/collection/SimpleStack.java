@@ -25,7 +25,6 @@ public class SimpleStack<T> {
             tail = newTail;
         }
         return deleted;
-
     }
 
     public void push(T value) {
