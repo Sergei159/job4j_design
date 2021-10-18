@@ -15,11 +15,12 @@ public class ForwardLinked<T> implements Iterable<T> {
         if (head == null) {
             head = node;
         } else {
-            Node<T> tail = head;
-            while (tail.next != null) {
-                tail = tail.next;
+            Node<T> newTail = head;
+            while (newTail.next != null) {
+                newTail = newTail.next;
             }
-            tail.next = node;
+            newTail.next = node;
+            tail = node;
         }
         size++;
         modCount++;
@@ -34,6 +35,8 @@ public class ForwardLinked<T> implements Iterable<T> {
             tail.next = node;
             tail = node;
         }
+        size++;
+        modCount++;
     }
 
     public T deleteFirst() {
@@ -65,7 +68,27 @@ public class ForwardLinked<T> implements Iterable<T> {
             newTail.next = null;
             tail = newTail;
         }
+        size--;
+        modCount++;
         return deleted;
+    }
+
+    public boolean revert() {
+        boolean rsl = true;
+        if (head != null && head.next != null) {
+            tail = head;
+            Node<T> current = head.next;
+            head.next = null;
+            while (current != null) {
+                Node<T> next = current.next;
+                current.next = head;
+                head = current;
+                current = next;
+            }
+        } else {
+            rsl = false;
+        }
+        return rsl;
     }
 
     @Override
