@@ -1,34 +1,21 @@
 package ru.job4j.it;
 
 import java.util.*;
-import java.util.ArrayList;
 import java.util.function.Predicate;
 
 public class ListUtils {
 
     public static <T> void addBefore(List<T> list, int index, T value) {
         Objects.checkIndex(index, list.size());
-        ListIterator<T> i = list.listIterator();
-        while (i.hasNext()) {
-            if (i.nextIndex() == index) {
-                i.add(value);
-                break;
-            }
-            i.next();
-        }
+        ListIterator<T> i = list.listIterator(index);
+        i.add(value);
     }
 
     public static <T> void addAfter(List<T> list, int index, T value) {
         Objects.checkIndex(index, list.size());
-        ListIterator<T> i = list.listIterator();
-        while (i.hasNext()) {
-            if (i.nextIndex() == index) {
-                i.next();
-                i.add(value);
-                break;
-            }
-            i.next();
-        }
+        ListIterator<T> i = list.listIterator(index);
+        i.next();
+        i.add(value);
     }
 
     public static <T> void removeIf(List<T> list, Predicate<T> filter) {
@@ -51,15 +38,9 @@ public class ListUtils {
     }
 
     public static <T> void removeAll(List<T> list, List<T> elements) {
-        ListIterator<T> listItr = list.listIterator();
-        while (listItr.hasNext()) {
-            T listCurrentItr = listItr.next();
-            for (int i = 0; i < elements.size(); i++) {
-                if (listCurrentItr != null && listCurrentItr.equals(elements.get(i))) {
-                    listItr.remove();
-                    break;
-                }
-            }
+        ListIterator<T> elemItr = elements.listIterator();
+        for (Iterator<T> i = elemItr; i.hasNext();) {
+            list.remove(i.next());
         }
     }
 }
