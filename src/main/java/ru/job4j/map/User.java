@@ -20,7 +20,7 @@ public class User {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (o == null || getClass() != o.getClass())  {
             return false;
         }
         User user = (User) o;
@@ -29,7 +29,11 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, children, birthday);
+        int result = 1;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + children;
+        result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
+        return result;
     }
 
     @Override
@@ -55,6 +59,8 @@ public class User {
         User user2 = new User("user1", 2, dot);
         users.put(user1, new Object());
         users.put(user2, new Object());
+        System.out.println("user1 hashCode: " + user1.hashCode());
+        System.out.println("user2 hashCode: " + user2.hashCode() + '\n');
         printCollection(users.entrySet());
 
     }
