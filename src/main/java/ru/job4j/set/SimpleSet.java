@@ -24,19 +24,10 @@ public class SimpleSet<T> implements Set<T> {
     @Override
     public boolean contains(T value) {
         boolean rsl = false;
-        if (value != null) {
-            for (int i = 0; i < set.size(); i++) {
-                if (Objects.equals(value, set.get(i))) {
-                    rsl = true;
-                    break;
-                }
-            }
-        } else {
-            for (int i = 0; i < set.size(); i++) {
-                if ((set.get(i)) == null) {
-                    rsl = true;
-                    break;
-                }
+        for (int i = 0; i < set.size(); i++) {
+            if (Objects.equals(value, set.get(i))) {
+                rsl = true;
+                break;
             }
         }
         return rsl;
