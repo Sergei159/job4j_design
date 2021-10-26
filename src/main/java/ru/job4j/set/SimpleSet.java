@@ -24,7 +24,7 @@ public class SimpleSet<T> implements Set<T> {
     @Override
     public boolean contains(T value) {
         boolean rsl = false;
-        for(T object: set) {
+        for (T object: set) {
             if (Objects.equals(value, object)) {
                 rsl = true;
                 break;
