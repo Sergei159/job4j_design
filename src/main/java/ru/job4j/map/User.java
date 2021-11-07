@@ -51,17 +51,4 @@ public class User {
         }
     }
 
-    public static void main(String[] args) {
-        Map<User, Object> users = new HashMap<User, Object>();
-        Calendar dot = Calendar.getInstance();
-        dot.set(1980, 12, 20);
-        User user1 = new User("user1", 2, dot);
-        User user2 = new User("user1", 2, dot);
-        users.put(user1, new Object());
-        users.put(user2, new Object());
-        System.out.println("user1 hashCode: " + user1.hashCode());
-        System.out.println("user2 hashCode: " + user2.hashCode() + '\n');
-        printCollection(users.entrySet());
-
-    }
 }
