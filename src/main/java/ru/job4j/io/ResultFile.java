@@ -2,9 +2,16 @@ package ru.job4j.io;
 
 import java.io.FileOutputStream;
 
-
+/**
+ * Class writes to .txt format file the multiplication table
+ *  @author  Sergei Sandrakov
+ */
 public class ResultFile {
-
+    /**
+     *
+     * @param size  size of the multiplication table
+     * @return string that contains the multiplication table
+     */
         public static String multiple(int size) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < size; i++) {

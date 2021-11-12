@@ -2,6 +2,11 @@ package ru.job4j.io;
 
 import java.io.FileInputStream;
 
+/**
+ * Class reads file and outputs to console even numbers
+ * @author  Sergei Sandrakov
+ */
+
 public class EvenNumberFile {
     public static void main(String[] args) {
         StringBuilder text = new StringBuilder();
