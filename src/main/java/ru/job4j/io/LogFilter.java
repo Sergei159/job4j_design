@@ -1,14 +1,13 @@
 package ru.job4j.io;
 
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class reads the files and outputs to console strings that contains "404"
- * * as a  penultimate word
+ * Class reads the files and saves strings that contains "404"
+ *  * * as a  penultimate word in a new file
  * @author  Sergei Sandrakov
  */
 public class LogFilter {
@@ -34,10 +33,26 @@ public class LogFilter {
         return result;
     }
 
+    /**
+     *
+     * @param log list of Strings to write in a file
+     * @param file name of the file to be written
+     */
+    public static void save(List<String> log, String file) {
+        try (var out = new PrintWriter(
+                new BufferedOutputStream(
+                        new FileOutputStream(file)
+                ))) {
+            out.println(log);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public static void main(String[] args) {
         List<String> log = filter("log.txt");
-        for (String string : log) {
-            System.out.println(string);
-        }
+        save(log, "404.txt");
+
     }
 }
