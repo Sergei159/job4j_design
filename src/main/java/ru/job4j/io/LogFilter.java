@@ -20,7 +20,9 @@ public class LogFilter {
     public static List<String> filter(String file) {
         List<String> result = new ArrayList<>();
         try (var in = new BufferedReader(new FileReader(file))) {
-            for (String line = in.readLine(); line != null; line = in.readLine()) {
+            String line;
+            while (in.ready()) {
+                line = in.readLine();
                 String[] str = line.split(" ");
                 if ("404".equals(str[str.length - 2])) {
                     result.add(line);
