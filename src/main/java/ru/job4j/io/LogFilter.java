@@ -43,7 +43,9 @@ public class LogFilter {
                 new BufferedOutputStream(
                         new FileOutputStream(file)
                 ))) {
-            out.println(log);
+            for (String string : log) {
+                out.println(string + System.lineSeparator());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
