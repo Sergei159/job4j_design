@@ -67,11 +67,6 @@ public class Config {
     }
 
     public static void main(String[] args) {
-        Config config = new Config("app.properties");
-        config.load();
-
-        //System.out.println(config.values);
-        System.out.println(config.value("hibernate.dialect"));
 
     }
 
