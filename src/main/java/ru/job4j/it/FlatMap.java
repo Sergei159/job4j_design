@@ -5,6 +5,13 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Collections;
 
+
+/**
+ * Class implements a transformation of list of iterators into the one iterator
+ *
+ * @param <T> Type of elements in nested iterator
+ */
+
 public class FlatMap<T> implements Iterator<T> {
     private final Iterator<Iterator<T>> data;
     private Iterator<T> cursor = Collections.emptyIterator();
@@ -39,5 +46,7 @@ public class FlatMap<T> implements Iterator<T> {
         while (flat.hasNext()) {
             System.out.println(flat.next());
         }
+
     }
+
 }

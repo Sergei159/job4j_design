@@ -3,6 +3,9 @@ package ru.job4j.it;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * this class implements even number iterator behavior
+ */
 public class EvenNumbersIt implements Iterator<Integer> {
 
     private int[] data;

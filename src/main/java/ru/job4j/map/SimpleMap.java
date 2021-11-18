@@ -1,8 +1,6 @@
 package ru.job4j.map;
 
-import java.util.ConcurrentModificationException;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 public class SimpleMap<K, V> implements Map<K, V> {
 
@@ -18,96 +16,34 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
     @Override
     public boolean put(K key, V value) {
-        if (count >= capacity * LOAD_FACTOR) {
-            expand();
-        }
-        int index = indexFor(hash(key.hashCode()));
-        boolean rsl = table[index] == null;
-        if (rsl) {
-            table[index] = new MapEntry<>(key, value);
-            count++;
-            modCount++;
-        }
-        return rsl;
+        return false;
     }
 
     private int hash(int hashCode) {
-        return (hashCode == 0) ? 0 : hashCode ^ (hashCode >>> 16);
+        return 0;
     }
 
     private int indexFor(int hash) {
-        return hash & (capacity - 1);
+        return 0;
     }
 
     private void expand() {
-        capacity *= 2;
-        MapEntry<K, V>[] newTable = new MapEntry[capacity];
-        for (MapEntry<K, V> entry : table) {
-            if (entry != null) {
-                int index = indexFor(hash(entry.key.hashCode()));
-                if (newTable[index] == null) {
-                    newTable[index] = entry;
-                }
 
-            }
-        }
-        table = newTable;
     }
 
     @Override
     public V get(K key) {
-        V rsl = null;
-        int index = indexFor(hash(key.hashCode()));
-        if (table[index] != null && table[index].key.equals(key)) {
-            rsl = table[index].value;
-        }
-        return rsl;
+        return null;
     }
 
     @Override
     public boolean remove(K key) {
-        int index = indexFor(hash(key.hashCode()));
-        boolean rsl = table[index] != null && table[index].key.equals(key);
-        if (rsl) {
-            table[index] = null;
-            count--;
-            modCount++;
-        }
-        return rsl;
+        return false;
     }
 
     @Override
     public Iterator<K> iterator() {
-        return new Iterator<>() {
-            int cursor;
-            int counter;
-            int expectedModCount = modCount;
-
-            @Override
-            public boolean hasNext() {
-                if (expectedModCount != modCount) {
-                    throw new ConcurrentModificationException();
-                }
-                return counter < count;
-            }
-
-            @Override
-            public K next() {
-                if (!hasNext()) {
-                    throw new NoSuchElementException();
-                }
-                K rsl = null;
-                while (cursor < table.length) {
-                    if (table[cursor] != null) {
-                        rsl = table[cursor++].key;
-                        counter++;
-                        break;
-                    }
-                    cursor++;
-                }
-                return  rsl;
-            }
-        };
+        return null;
     }
 
     private static class MapEntry<K, V> {
@@ -119,6 +55,6 @@ public class SimpleMap<K, V> implements Map<K, V> {
             this.key = key;
             this.value = value;
         }
-    }
 
+    }
 }

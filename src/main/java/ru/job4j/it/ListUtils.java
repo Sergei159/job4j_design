@@ -1,6 +1,7 @@
 package ru.job4j.it;
 
 import java.util.*;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 public class ListUtils {
@@ -30,8 +31,7 @@ public class ListUtils {
         ListIterator<T> iterator = list.listIterator();
         while (iterator.hasNext()) {
             if (filter.test(iterator.next())) {
-                iterator.remove();
-                iterator.add(value);
+                iterator.set(value);
             }
         }
     }

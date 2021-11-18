@@ -1,5 +1,6 @@
 package ru.job4j.it;
 
+import org.hamcrest.core.Is;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -92,6 +93,19 @@ public class ListUtilsTest {
         assertThat(list, is(Arrays.asList(
                 null, 2, 3, 4, 5, 6, 7, 8, null
         )));
+    }
+
+    @Test
+
+    public void whenRemoveAll2() {
+        List<Integer> input = new ArrayList<>(Arrays.asList(
+                1, 3, 4, 1, 5
+        ));
+        List<Integer> elements = new ArrayList<>(Arrays.asList(
+                0, 1, 4
+        ));
+        ListUtils.removeAll(input, elements);
+        assertThat(Arrays.asList(3, 5), Is.is(input));
     }
 
 }
