@@ -2,7 +2,18 @@ package ru.job4j.io;
 
 import java.io.*;
 
+/**
+ * This class reads the file with server information and writes the information
+ * of not-working server time into the file
+ */
 public class Analysis {
+
+    /**
+     * reads the info from source file and writes the file with information
+     * about exceeding 400 ща еру ашкые value in a line of a source file
+     * @param source - source file to read
+     * @param target = target file to write
+     */
     public void unavailable(String source, String target) {
         try (BufferedReader in = new BufferedReader(new FileReader(source));
              BufferedWriter out = new BufferedWriter(new FileWriter(target))) {
