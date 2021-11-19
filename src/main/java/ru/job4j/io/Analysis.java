@@ -10,7 +10,7 @@ public class Analysis {
 
     /**
      * reads the info from source file and writes the file with information
-     * about exceeding 400 ща еру ашкые value in a line of a source file
+     * about exceeding 400 of the first value in a line of a source file
      * @param source - source file to read
      * @param target = target file to write
      */
@@ -26,14 +26,16 @@ public class Analysis {
                     || "500".equals(current[0]);
                 boolean previousEqualsTo400or500 = "400".equals(previous[0])
                     || "500".equals(previous[0]);
-                previous = current;
 
                 if (currentEqualsTo400or500 && !previousEqualsTo400or500) {
                     result.append(current[1]).append(";");
+                    previous = current;
+
                 }
                 if (!currentEqualsTo400or500 && previousEqualsTo400or500) {
                     result.append(current[1])
                             .append(";").append(System.lineSeparator());
+                    previous = current;
                 }
                 nextLine = in.readLine();
             }
