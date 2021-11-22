@@ -12,7 +12,6 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
 
     private List<FileProperty>  fileList = new ArrayList<>();
 
-    private Set<FileProperty> resultList = new HashSet<>();
 
 
     @Override
@@ -32,15 +31,15 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
                 }
                 FileProperty theSecondFile = fileList.get(j);
                 if (theFirstFile.equals(theSecondFile)) {
-                    resultList.add(theSecondFile);
+                    System.out.println(
+                            "name: " + theSecondFile.getName()
+                            + "; size: " + theSecondFile.getSize()
+                            + ": path: " + file.toAbsolutePath()
+                    );
                 }
             }
         }
 
         return super.visitFile(file, attrs);
-    }
-
-    public Set<FileProperty> getResultList() {
-        return resultList;
     }
 }
