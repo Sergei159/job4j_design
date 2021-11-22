@@ -15,10 +15,18 @@ public class DuplicatesFinder {
     public static void main(String[] args) throws IOException {
         Path start = Paths.get(".");
         search(start);
+
     }
 
     public static void search(Path root) throws IOException {
         DuplicatesVisitor searcher = new DuplicatesVisitor();
         Files.walkFileTree(root, searcher);
-}
+        List<Path> result = searcher.getDuplicated();
+        if (result.isEmpty()) {
+            System.out.println("duplicated haven't found");
+        } else {
+            System.out.println("duplicates are: ");
+            result.forEach(System.out::println);
+        }
+    }
 }

@@ -10,36 +10,35 @@ import java.util.*;
 
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
 
-    private List<FileProperty>  fileList = new ArrayList<>();
-
+    private Map<FileProperty, List<Path>>  result = new HashMap<>();
 
 
     @Override
-    public FileVisitResult visitFile(
-            Path file, BasicFileAttributes attrs) throws IOException {
+    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
+            throws IOException {
         FileProperty fileProperty = new FileProperty(
                 file.toFile().length(),
                 file.getFileName().toString()
         );
-        fileList.add(fileProperty);
 
-        for (int i = 0; i < fileList.size(); i++) {
-            FileProperty theFirstFile = fileList.get(i);
-            for (int j = 0; j < fileList.size(); j++) {
-                if (i == j) {
-                    continue;
-                }
-                FileProperty theSecondFile = fileList.get(j);
-                if (theFirstFile.equals(theSecondFile)) {
-                    System.out.println(
-                            "name: " + theSecondFile.getName()
-                            + "; size: " + theSecondFile.getSize()
-                            + ": path: " + file.toAbsolutePath()
-                    );
-                }
-            }
+        if (result.containsKey(fileProperty)) {
+           List<Path> duplicates = new ArrayList<>(result.get(fileProperty));
+           duplicates.add(file);
+           result.put(fileProperty, duplicates);
+        } else {
+            List<Path> duplicates = new ArrayList<>();
+            duplicates.add(file);
+            result.put(fileProperty, duplicates);
         }
-
         return super.visitFile(file, attrs);
+    }
+
+
+    public List<Path> getDuplicated() {
+        List<Path> duplicates = new ArrayList<>();
+        result.values().stream()
+                .filter(value -> value.size() > 1)
+                .forEach(duplicates :: addAll);
+        return duplicates;
     }
 }
