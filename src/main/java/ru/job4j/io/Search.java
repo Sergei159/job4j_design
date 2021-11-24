@@ -11,6 +11,7 @@ import java.util.function.Predicate;
  * Class search files by a predicate and output them in a console
  */
 
+
 public class Search  {
     public static void main(String[] args) throws IOException {
         if (args.length != 2) {
