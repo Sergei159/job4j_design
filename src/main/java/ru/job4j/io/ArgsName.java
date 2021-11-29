@@ -27,14 +27,11 @@ public class ArgsName {
         if (args.length == 0) {
             throw new IllegalArgumentException("args array is empty!");
         }
-        String first = args[0].substring(1);
-        String[] firstArray = validation(first);
-        values.put(firstArray[0], firstArray[1]);
-
-        String second = args[1].substring(1);
-        String[] secondArray = validation(second);
-        values.put(secondArray[0], secondArray[1]);
-
+        for (int i = 0; i < args.length; i++) {
+            String subtracted = args[i].substring(1);
+            String[] array = validation(subtracted);
+            values.put(array[0], array[1]);
+        }
     }
 
     /**
