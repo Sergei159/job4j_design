@@ -7,22 +7,38 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+/**
+ * class archives the single file or a group of files
+ */
+
 public class Zip {
 
+    /**
+     * archives a group of files
+     * @param sources files to be archived
+     * @param target the final way of archived files
+     */
+
     public static void packFiles(List<Path> sources, Path target) {
-        for (Path source : sources) {
-            try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(String.valueOf(target))))) {
+        try (var zip = new ZipOutputStream(new BufferedOutputStream(
+                new FileOutputStream(String.valueOf(target))))) {
+            for (Path source : sources) {
                 zip.putNextEntry(new ZipEntry(source.toFile().getPath()));
-                try (BufferedInputStream out = new BufferedInputStream(new FileInputStream(String.valueOf(source)))) {
+                try (BufferedInputStream out = new BufferedInputStream(
+                        new FileInputStream(String.valueOf(source)))) {
                     zip.write(out.readAllBytes());
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
     }
 
+    /**
+     *
+     * @param source file to be archived
+     * @param target the final way of the archived file
+     */
 
     public static void packSingleFile(Path source, Path target) {
         try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(String.valueOf(target))))) {
@@ -35,6 +51,15 @@ public class Zip {
         }
     }
 
+    /**
+     *
+     * @param args array of Strings to be validated -
+     * it must contain 3 elements
+     * 1. Directory to be archived
+     * 2. file format
+     * 3. final way of archived file
+     */
+
     public static void validation(String[] args) {
         if (args.length != 3) {
             throw new IllegalArgumentException(
@@ -45,7 +70,7 @@ public class Zip {
                             + System.lineSeparator()
                             + "2. file format"
                             + System.lineSeparator()
-                            + "3. file format"
+                            + "3. final way of archived file"
             );
         }
         File file = new File(args[0]);
