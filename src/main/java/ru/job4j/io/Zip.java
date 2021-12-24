@@ -36,23 +36,6 @@ public class Zip {
 
     /**
      *
-     * @param source file to be archived
-     * @param target the final way of the archived file
-     */
-
-    public static void packSingleFile(Path source, Path target) {
-        try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(String.valueOf(target))))) {
-            zip.putNextEntry(new ZipEntry(source.toFile().getPath()));
-            try (BufferedInputStream out = new BufferedInputStream(new FileInputStream(String.valueOf(source)))) {
-                zip.write(out.readAllBytes());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     *
      * @param args array of Strings to be validated -
      * it must contain 3 elements
      * 1. Directory to be archived
