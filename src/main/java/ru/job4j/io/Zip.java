@@ -4,6 +4,7 @@ import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -43,7 +44,7 @@ public class Zip {
      * 3. final way of archived file
      */
 
-    public static void validation(String[] args) {
+    public static void validationOfSize(String[] args) {
         if (args.length != 3) {
             throw new IllegalArgumentException(
                     System.lineSeparator()
@@ -56,6 +57,14 @@ public class Zip {
                             + "3. final way of archived file"
             );
         }
+    }
+
+    /**
+     * checks the first element is a directory
+     * @param args arrays of strings to be checked
+     */
+
+    public static void isDirectoryCheck(String[] args) {
         File file = new File(args[0]);
         if (!file.isDirectory()) {
             throw new IllegalArgumentException(
@@ -64,17 +73,18 @@ public class Zip {
     }
 
     public static void main(String[] args) throws IOException {
+        validationOfSize(args);
         ArgsName argsName = ArgsName.of(args);
         String[] values  = {
                 argsName.get("d"),
                 argsName.get("e"),
                 argsName.get("o")
         };
-        validation(values);
+        isDirectoryCheck(values);
         Path start = Paths.get(values[0]);
         Path target = Paths.get(values[2]);
         List<Path> source = Search.search(
-                start, p -> p.toFile().getName().endsWith(values[1]));
+                start, p -> !p.toFile().getName().endsWith(values[1]));
         packFiles(source, target);
 
 
