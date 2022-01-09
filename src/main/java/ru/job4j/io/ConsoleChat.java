@@ -15,6 +15,7 @@ public class ConsoleChat {
     private static final String STOP = "stop";
     private static final String CONTINUE = "continue";
     private List<String> log = new ArrayList();
+    private List<String> answers = new ArrayList<>();
 
 
     public ConsoleChat(String path, String botAnswers) {
@@ -38,6 +39,11 @@ public class ConsoleChat {
         Scanner scanner = new Scanner(System.in);
         String condition;
         boolean isWorking = true;
+        try {
+            answers = readPhrases();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         while (scanner.hasNextLine()) {
             condition = scanner.nextLine();
             log.add("you: " + condition);
@@ -74,15 +80,9 @@ public class ConsoleChat {
     }
 
     private void writeAnswer()  {
-        List<String> rsl = new ArrayList();
-        try {
-            rsl = readPhrases();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        int index = new Random().nextInt(rsl.size());
-        System.out.println(rsl.get(index));
-        log.add("bot: " + rsl.get(index));
+        int index = new Random().nextInt(answers.size());
+        System.out.println(answers.get(index));
+        log.add("bot: " + answers.get(index));
     }
 
     private void saveLog(List<String> log) {
@@ -98,6 +98,6 @@ public class ConsoleChat {
 
     public static void main(String[] args) {
         ConsoleChat cc = new ConsoleChat("savedLog.txt", "phrases.txt");
-        cc.run();
+            cc.run();
     }
 }
