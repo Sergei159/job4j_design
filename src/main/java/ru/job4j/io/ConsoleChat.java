@@ -39,11 +39,7 @@ public class ConsoleChat {
         Scanner scanner = new Scanner(System.in);
         String condition;
         boolean isWorking = true;
-        try {
-            answers = readPhrases();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        answers = readPhrases();
         while (scanner.hasNextLine()) {
             condition = scanner.nextLine();
             log.add("you: " + condition);
@@ -64,10 +60,10 @@ public class ConsoleChat {
         saveLog(log);
     }
 
-    private List<String> readPhrases() throws FileNotFoundException {
+    private List<String> readPhrases()  {
         List<String> result = new ArrayList();
-        BufferedReader in = new BufferedReader(new FileReader(botAnswers));
-        try {
+        try (BufferedReader in = new BufferedReader(
+                new FileReader(botAnswers, StandardCharsets.UTF_8))) {
             String nextLine = in.readLine();
             while (nextLine != null) {
                 result.add(nextLine);
