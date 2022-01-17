@@ -11,6 +11,7 @@ create table product (
 	price int
 );
 
+
 insert into type(name) values
 ('Молоко'), ('Сыр'), ('Овощи'),
 ('Фрукты'), ('Хлеб'), ('Мороженое');
