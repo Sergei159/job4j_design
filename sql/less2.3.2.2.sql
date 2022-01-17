@@ -27,15 +27,19 @@ values(1,1), (2,1), (3,1), (1,2), (2,2), (4,3), (2,3);
 
 select avg(price) from devices_people join devices on device_id = devices.id;
 
-select dp.people_id, avg(devices.price) 
-from devices_people as dp
+select people.name, dp.people_id, avg(devices.price) 
+from (devices_people as dp
 join devices 
-on dp.device_id = devices.id
-group by dp.people_id;
+on dp.device_id = devices.id)
+join people
+on people.id = dp.people_id
+group by people.name, dp.people_id;
 
-select dp.people_id, avg(devices.price) 
-from devices_people as dp
+select people.name, dp.people_id, avg(devices.price) 
+from (devices_people as dp
 join devices 
-on dp.device_id = devices.id
-group by dp.people_id
+on dp.device_id = devices.id)
+join people
+on people.id = dp.people_id
+group by people.name, dp.people_id
 having avg(devices.price) > 5000;
