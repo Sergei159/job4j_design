@@ -18,7 +18,7 @@ public class UsageJSON {
                         + "\"isStudying\":true,"
                         + "\"age\":23,"
                         + "\"name\":Alex,"
-                        + "\"studentContact\":"
+                        + "\"Contact\":"
                         + "{"
                         + "\"phone\":\"11-111\""
                         + "},"
