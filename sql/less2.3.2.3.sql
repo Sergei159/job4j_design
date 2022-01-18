@@ -56,23 +56,30 @@ values ('Ванильное мороженое', 6, date '2022-06-01', 120),
  ('Шоколадное мороженое', 6, date '2022-06-01', 120),
  ('Клубничное мороженое', 6, date '2022-06-01', 120);
 
+/* 1. Написать запрос получение всех продуктов с типом "СЫР"*/
 
 select type.name, product.name
 from type
 join product
-on type.id = product.type_id and product.type_id = 2;
+on type.id = product.type_id
+where type.name = 'Сыр';
 
+/*  2. Написать запрос получения всех продуктов, у кого в имени есть слово "мороженое"*/
 select product.name
 from product
 where product.name like '%мороженое%';
 
+/* 3. Написать запрос, который выводит все продукты, срок годности которых уже истек */
 select product.name, product.expired_date
 from product
-where product.expired_date <= date '2022-01-18';
+where product.expired_date <= current_date;
 
+/* 4. Написать запрос, который выводит самый дорогой продукт.*/
 select product.name, product.price
 from product
 where product.price = (select max(price) from product);
+
+/* 5. Написать запрос, который выводит для каждого типа количество продуктов к нему принадлежащих.*/
 
 select type.name, count(product.name)
 from type
@@ -80,15 +87,15 @@ join product
 on type.id = product.type_id
 group by type.name;
 
+/*  6. Написать запрос получение всех продуктов с типом "СЫР" и "МОЛОКО"*/
+
 select type.name, product.name
 from type
 join product
-on type.id = product.type_id and product.type_id = 1
-union all
-select type.name, product.name
-from type
-join product
-on type.id = product.type_id and product.type_id = 2;
+on type.id = product.type_id
+where type.name = 'Сыр' or type.name = 'Молоко';
+
+/*  7. Написать запрос, который выводит тип продуктов, которых менее 5  штук.*/
 
 select type.name, count(product.name)
 from type
@@ -96,6 +103,8 @@ join product
 on type.id = product.type_id
 group by type.name
 having count(product.name) > 5;
+
+/* 8. Вывести все продукты и их тип.*/
 
 select type.name, product.name
 from type
