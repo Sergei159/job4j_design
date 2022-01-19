@@ -34,7 +34,10 @@ on d.id = e.department_id;
 select * from departments d
 cross join employers e;
 
-/*Используя left join найти департаменты, у которых нет работников */
+
+/* Используя left join найти департаменты, у которых нет работников
+//
+*/
 select * from departments d
 left join employers e 
 on d.id = e.department_id
