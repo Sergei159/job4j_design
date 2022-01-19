@@ -42,23 +42,22 @@ where e.department_id is null;
 
 /*Используя left и right join написать запросы, которые давали бы одинаковый результат*/
 
-
-select * from departments d
+select d.name, e.name from departments d
 left join employers e 
 on d.id = e.department_id;
 
-select * from employers e
-right join departments d  
+select d.name, e.name from employers e 
+right join departments d 
 on d.id = e.department_id;
 
 /*///////*/
 
-select * from departments d
-right join employers e 
+select e.name, d.name from employers e 
+left join departments d
 on d.id = e.department_id;
 
-select * from employers e 
-left join departments d
+select e.name, d.name from departments d  
+right join employers e
 on d.id = e.department_id;
 
 /*Создать таблицу teens с атрибутами name, gender и заполнить ее. Используя cross join составить все возможные разнополые пары*/
