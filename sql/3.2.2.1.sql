@@ -51,6 +51,21 @@ where cars.body_id = body.id
 and cars.engine_id = engine.id
 and cars.transmission_id = transmission.id;
 
+
+/*/////*/
+
+ select cars.name as Car_name,
+   body.name as Body_name,
+   engine.name as Engine_name,
+   transmission.name as Transmission_name
+   from cars
+   left join body
+   on cars.body_id = body.id
+   left join engine on
+   cars.engine_id = engine.id
+   left join transmission
+   on cars.transmission_id = transmission.id;
+
 /*2) Вывести отдельно детали (1 деталь - 1 запрос), которые не используются НИ в одной машине,*/
 
 select body.name as Body_name,body.id
@@ -61,6 +76,7 @@ from body
 except
 select cars.body_id
 from cars);
+
 
 select engine.name as Engine_name,engine.id
 from engine
