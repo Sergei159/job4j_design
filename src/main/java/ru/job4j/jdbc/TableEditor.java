@@ -7,7 +7,7 @@ import java.util.StringJoiner;
 
 public class TableEditor implements AutoCloseable {
 
-    Connection connection;
+    private Connection connection;
 
     private String path;
 
