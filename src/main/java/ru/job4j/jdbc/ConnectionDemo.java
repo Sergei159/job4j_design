@@ -6,6 +6,9 @@ import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Класс подключается к БД
+ */
 public class ConnectionDemo {
 
 
@@ -21,11 +24,12 @@ public class ConnectionDemo {
     }
 
     public static void main(String[] args) throws Exception {
+         /**
         try (Connection connection = getConnection("app.properties")) {
             DatabaseMetaData metaData = connection.getMetaData();
             System.out.println(metaData.getUserName());
             System.out.println(metaData.getURL());
 
-        }
+        }*/
     }
 }

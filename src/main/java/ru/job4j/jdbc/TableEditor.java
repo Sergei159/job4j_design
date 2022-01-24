@@ -5,6 +5,10 @@ import java.sql.*;
 import java.util.Properties;
 import java.util.StringJoiner;
 
+/**
+ * Класс выводит заданные SQL скрипты  на консоль
+ */
+
 public class TableEditor implements AutoCloseable {
 
     Connection connection;
@@ -96,6 +100,7 @@ public class TableEditor implements AutoCloseable {
     }
 
     public static void main(String[] args) throws Exception {
+        /**
         TableEditor tableEditor = new TableEditor("app.properties");
         tableEditor.createTable("users");
         tableEditor.dropTable("users");
@@ -105,7 +110,7 @@ public class TableEditor implements AutoCloseable {
         tableEditor.addColumn("users", "name", "varchar(255)");
         tableEditor.renameColumn("users", "name", "new_Name");
         tableEditor.close();
-
+*/
 
     }
 }
