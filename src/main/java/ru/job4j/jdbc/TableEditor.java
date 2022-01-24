@@ -11,7 +11,7 @@ import java.util.StringJoiner;
 
 public class TableEditor implements AutoCloseable {
 
-    Connection connection;
+    private Connection connection;
 
     private String path;
 
@@ -79,7 +79,7 @@ public class TableEditor implements AutoCloseable {
         buffer.add(header);
         try (var statement = connection.createStatement()) {
             var selection = statement.executeQuery(String.format(
-                    " select * from %s  where exists (select %s) limit 1", tableName, tableName
+                    " select * from %s  limit 1", tableName
             ));
             var metaData = selection.getMetaData();
             for (int i = 1; i <= metaData.getColumnCount(); i++) {
