@@ -17,6 +17,10 @@ import java.util.Properties;
 public class ImportDB {
 
     private Properties cfg;
+
+    /**
+     * Имя файла, откуда читаются данные
+     */
     private String dump;
 
     public ImportDB(Properties cfg, String dump) {
@@ -24,15 +28,21 @@ public class ImportDB {
         this.dump = dump;
     }
 
-    public List<User> load() throws IOException {
+    /**
+     * метод читает из файла формата .txt данные об имени и email
+     * пользователей и добавляет их в список users
+     * @return возвращает список users с данными, прочитанными из файла dump
+     */
+    public List<User> load() {
         List<User> users = new ArrayList<>();
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
             rd.lines()
                     .filter(s ->  s.length() > 0)
                     .forEach(str -> {
                         String[] pair = str.split(";");
-                        if (pair.length != 2) {
-                            throw new IllegalArgumentException();
+                        if (pair.length != 2
+                                && (pair[0] != null ||  pair[1] != null)) {
+                            throw new IllegalArgumentException("wrong initial data format");
                         }
                         users.add(new User(pair[0], pair[1]));
                     });
@@ -42,6 +52,12 @@ public class ImportDB {
         return users;
     }
 
+    /**
+     * метод загружает в БД поля из списка users
+     * @param users список пользователей
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public void save(List<User> users) throws ClassNotFoundException, SQLException {
         Class.forName(cfg.getProperty("jdbc.driver"));
         try (Connection cnt = DriverManager.getConnection(
