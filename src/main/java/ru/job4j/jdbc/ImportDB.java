@@ -41,7 +41,7 @@ public class ImportDB {
                     .forEach(str -> {
                         String[] pair = str.split(";");
                         if (pair.length != 2
-                                && (!pair[0].isEmpty() || !pair[1].isEmpty())) {
+                                && (pair[0].isEmpty() || pair[1].isEmpty())) {
                             throw new IllegalArgumentException("wrong initial data format");
                         }
                         users.add(new User(pair[0], pair[1]));
