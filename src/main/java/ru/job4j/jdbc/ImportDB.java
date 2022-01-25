@@ -28,7 +28,7 @@ public class ImportDB {
         List<User> users = new ArrayList<>();
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
             rd.lines()
-                    .filter(s ->  s.length() > 0 && !s.startsWith("#"))
+                    .filter(s ->  s.length() > 0)
                     .forEach(str -> {
                         String[] pair = str.split(";");
                         if (pair.length != 2) {
