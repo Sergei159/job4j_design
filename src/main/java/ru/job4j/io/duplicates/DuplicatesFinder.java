@@ -18,6 +18,11 @@ public class DuplicatesFinder {
 
     }
 
+    /**
+     * создание объекта DuplicatesVisitor, реализующий интерфейс  SimpleFileVisitor<Path>
+     * @param root
+     * @throws IOException
+     */
     public static void search(Path root) throws IOException {
         DuplicatesVisitor searcher = new DuplicatesVisitor();
         Files.walkFileTree(root, searcher);

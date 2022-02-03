@@ -18,6 +18,15 @@ public class ConsoleChat {
     private List<String> answers = new ArrayList<>();
 
 
+    /**
+     *  пользователь вводит слово-фразу, программа берет случайную фразу из текстового файла и выводит в ответ.
+     * - программа замолкает если пользователь вводит слово «стоп», при этом он может продолжать отправлять сообщения в чат.
+     * - если пользователь вводит слово «продолжить», программа снова начинает отвечать.
+     * - при вводе слова «закончить» программа прекращает работу.
+     * - запись диалога, включая слова-команды стоп/продолжить/закончить должны быть записаны в текстовый лог.
+     * @param path
+     * @param botAnswers
+     */
     public ConsoleChat(String path, String botAnswers) {
         this.path = path;
         this.botAnswers = botAnswers;
@@ -82,7 +91,7 @@ public class ConsoleChat {
     }
 
     private void saveLog(List<String> log) {
-        try (var out = new PrintWriter(
+        try (PrintWriter out = new PrintWriter(
                 new FileWriter(path, StandardCharsets.UTF_8, true))) {
             for (String string : log) {
                 out.println(string + System.lineSeparator());
