@@ -7,10 +7,13 @@ public class GCTypeDemo {
         Random random = new Random();
         int length = 100;
         String[] data = new String[1_000_000];
+        System.out.println("PID процесса: ");
+        System.out.println(ProcessHandle.current().pid());
         for (int i = 0; ; i = (i + 1) % data.length) {
             data[i] = String.valueOf(
                     (char) random.nextInt(255)
             ).repeat(length);
         }
+
     }
 }
