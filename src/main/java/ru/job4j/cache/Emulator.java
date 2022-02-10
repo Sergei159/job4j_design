@@ -2,6 +2,10 @@ package ru.job4j.cache;
 
 import java.util.Scanner;
 
+/**
+ * Класс для реализации DirFileCache через фабрику AbstractCache
+ */
+
 public class Emulator {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
