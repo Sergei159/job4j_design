@@ -3,6 +3,7 @@ package ru.job4j.kiss;
 import java.util.Comparator;
 import java.util.List;
 
+
 /**
  * Класс реализует методы для нахождения минимального
  * и максимального значения из list<T>
