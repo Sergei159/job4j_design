@@ -11,7 +11,7 @@ import java.nio.file.Path;
 
 public class DirFileCache extends AbstractCache<String, String> {
     /**
-     * Директория,в которой находятся файлы для кеширования
+     * Директория, в которой находятся файлы для кеширования
      */
     private final String cachingDir;
 

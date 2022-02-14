@@ -1,8 +1,5 @@
 package ru.job4j.srp;
-
-import ru.job4j.serialization.A;
-
-import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -19,7 +16,7 @@ public class DescSortReport  implements Report {
         StringBuilder text = new StringBuilder();
         text.append("Name; Hired; Fired; Salary;\r\n");
         List<Employee> workers = store.findBy(filter);
-        workers.sort((s1, s2) -> (int) (s1.getSalary() - s2.getSalary()));
+        workers.sort(Comparator.comparingDouble(Employee::getSalary).reversed());
         for (Employee employee : workers) {
             text.append(employee.getName()).append(";")
                     .append(employee.getSalary()).append(";")

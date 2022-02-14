@@ -88,11 +88,11 @@ public class ReportEngineTest {
         StringBuilder expect = new StringBuilder()
                 .append("Name; Hired; Fired; Salary;")
                 .append(System.lineSeparator())
-                .append(secondWorker.getName()).append(";")
-                .append(secondWorker.getSalary()).append(";")
-                .append(System.lineSeparator())
                 .append(firstWorker.getName()).append(";")
                 .append(firstWorker.getSalary()).append(";")
+                .append(System.lineSeparator())
+                .append(secondWorker.getName()).append(";")
+                .append(secondWorker.getSalary()).append(";")
                 .append(System.lineSeparator());
         assertThat(engine.generate(em -> true), is(expect.toString()));
     }
