@@ -69,7 +69,7 @@ public class CinemaTest {
         Ticket ticket1 = cinema.buy(account1, 1, 1, date1);
 
         Calendar date2 = Calendar.getInstance();
-        date2.set(2022, 02, 11, 18, 00);
+        date2.set(2022, 02, 11, 16, 00);
         Ticket ticket2 = cinema.buy(account2, 1, 1, date2);
     }
 }

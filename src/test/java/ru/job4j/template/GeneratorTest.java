@@ -20,7 +20,6 @@ import static org.junit.Assert.*;
 @Ignore
 public class GeneratorTest {
 
-
     @Test
     public void whenRightKeys() {
         Generator generator = new GeneratorDemo();
