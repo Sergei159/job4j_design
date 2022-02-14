@@ -3,12 +3,20 @@ package ru.job4j.srp;
 import com.google.gson.GsonBuilder;
 
 import java.util.List;
+import java.util.function.Predicate;
 
-public class JsonConverter implements Converter {
+public class JsonConverter implements Report {
+
+    private Store store;
+
+    public JsonConverter(Store store) {
+        this.store = store;
+    }
 
     @Override
-    public String convert(List<Employee> workers) {
+    public String generate(Predicate<Employee> filter) {
         var lib = new GsonBuilder().create();
-        return lib.toJson(workers);
+        return lib.toJson(store.findBy(filter));
     }
+
 }

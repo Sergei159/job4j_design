@@ -5,12 +5,14 @@ import static org.hamcrest.Matchers.is;
 
 import org.junit.Ignore;
 import org.junit.Test;
+
+import javax.xml.bind.JAXBException;
 import java.util.Calendar;
 
 public class ReportEngineTest {
 
     @Test
-    public void whenOldGenerated() {
+    public void whenOldGenerated() throws JAXBException {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
@@ -28,7 +30,7 @@ public class ReportEngineTest {
     }
 
     @Test
-    public void whenHtmlReport() {
+    public void whenHtmlReport() throws JAXBException {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
@@ -56,7 +58,7 @@ public class ReportEngineTest {
     }
 
     @Test
-    public void whenDollarSalary() {
+    public void whenDollarSalary() throws JAXBException {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
@@ -74,7 +76,7 @@ public class ReportEngineTest {
     }
 
     @Test
-    public void whenDescSortReport() {
+    public void whenDescSortReport() throws JAXBException {
         MemStore store = new MemStore();
         Calendar firstDate = Calendar.getInstance();
         Employee firstWorker = new Employee("Ivan", firstDate, firstDate, 100);
@@ -94,5 +96,53 @@ public class ReportEngineTest {
                 .append(secondWorker.getSalary()).append(";")
                 .append("\r").append("\n");
         assertThat(engine.generate(em -> true), is(expect.toString()));
+    }
+
+    @Test
+    public void whenJSONConverting() {
+        MemStore store = new MemStore();
+        Calendar firstDate = Calendar.getInstance();
+        firstDate.set(2022, 02, 14);
+        Employee firstWorker = new Employee("Ivan", null, null, 100);
+        store.add(firstWorker);
+
+        Calendar secondDate = Calendar.getInstance();
+        secondDate.set(2022, 02, 15);
+        Employee secondWorker = new Employee("Sergei", null, null, 50);
+        store.add(secondWorker);
+
+        JsonConverter jsonConverter = new JsonConverter(store);
+        String result = jsonConverter.generate(em -> true);
+        String expected = "[{\"name\":\"Ivan\",\"salary\":100.0},{\"name\":\"Sergei\",\"salary\":50.0}]";
+        assertThat(result, is(expected));
+
+    }
+    @Test
+    public void whenXmlConverter() throws JAXBException {
+        MemStore store = new MemStore();
+        Calendar firstDate = Calendar.getInstance();
+        firstDate.set(2022, 02, 14);
+        Employee firstWorker = new Employee("Ivan", null, null, 100);
+        store.add(firstWorker);
+
+        Calendar secondDate = Calendar.getInstance();
+        secondDate.set(2022, 02, 15);
+        Employee secondWorker = new Employee("Sergei", null, null, 50);
+        store.add(secondWorker);
+
+        XmlConverter xmlConverter = new XmlConverter(store);
+        String result = xmlConverter.generate(em -> true);
+        String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
+                + "<workers>\n"
+                + "    <workers>\n"
+                + "        <name>Ivan</name>\n"
+                + "        <salary>100.0</salary>\n"
+                + "    </workers>\n"
+                + "    <workers>\n"
+                + "        <name>Sergei</name>\n"
+                + "        <salary>50.0</salary>\n"
+                + "    </workers>\n"
+                + "</workers>\n";
+        assertThat(result, is(expected));
     }
 }
