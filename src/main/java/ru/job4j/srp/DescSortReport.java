@@ -20,7 +20,7 @@ public class DescSortReport  implements Report {
         for (Employee employee : workers) {
             text.append(employee.getName()).append(";")
                     .append(employee.getSalary()).append(";")
-                    .append(System.lineSeparator());
+                    .append("\r").append("\n");
         }
         return text.toString();
     }

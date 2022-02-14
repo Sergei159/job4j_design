@@ -21,7 +21,7 @@ public class DollarSalaryReport implements Report {
                     .append(employee.getHired()).append(";")
                     .append(employee.getFired()).append(";")
                     .append(employee.getSalary() / dollar).append(";")
-                    .append(System.lineSeparator());
+                    .append("\r").append("\n");
         }
         return text.toString();
     }
