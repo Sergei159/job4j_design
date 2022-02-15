@@ -72,24 +72,24 @@ public class ControlQualityTest {
     }
 
     @Test
-    public void whenDiscount() {
-        Food fish = new Fish(
-                "fish",
-                LocalDate.of(2022, 02, 1),
-                LocalDate.of(2022, 02, 20),
+    public void whenIsInShopWithoutDiscount() {
+        Food bread = new Bakery(
+                "bread",
+                LocalDate.of(2022, 02, 10),
+                LocalDate.of(2022, 02, 25),
                 500,
                 0
         );
-        ControlQuality.defineQuality(fish);
+        ControlQuality.defineQuality(bread);
         List<Food> expected = new ArrayList<>();
-        expected.add(new Fish(
-                "fish",
-                LocalDate.of(2022, 02, 1),
-                LocalDate.of(2022, 02, 20),
+        expected.add(new Bakery(
+                "bread",
+                LocalDate.of(2022, 02, 10),
+                LocalDate.of(2022, 02, 25),
                 500,
-                250
+                0
         ));
-        assertThat(Shop.get(), is(expected));
+        assertThat(expected, is(Shop.get()));
     }
 
 }
