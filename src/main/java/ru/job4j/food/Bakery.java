@@ -1,13 +1,13 @@
 package ru.job4j.food;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Bakery extends Food {
     public Bakery() {
     }
 
-    public Bakery(String name, Date expiryDate, Date createDate,
+    public Bakery(String name, LocalDate createDate, LocalDate expiryDate,
                   double price, double discount) {
-        super(name, expiryDate, createDate, price, discount);
+        super(name, createDate, expiryDate, price, discount);
     }
 }

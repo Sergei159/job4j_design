@@ -1,20 +1,20 @@
 package ru.job4j.food;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Warehouse implements FoodStore {
-    private List<Food> wareHouseStore;
+    private static List<Food> wareHouseStore = new ArrayList<>();;
 
-    public void get() {
-        wareHouseStore.forEach(System.out::println);
-        }
+    public static List<Food> get() {
+        return wareHouseStore;
+    }
 
 
     @Override
-    public boolean control(Food product) {
-        boolean result = false;
+    public void add(Food product, double percentOfFreshness) {
+        wareHouseStore.add(product);
 
-        return result;
     }
 
 }

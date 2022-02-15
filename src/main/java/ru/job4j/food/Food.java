@@ -1,7 +1,9 @@
 package ru.job4j.food;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.Objects;
 
 public class Food {
 
@@ -9,9 +11,10 @@ public class Food {
 
     public String name;
 
-    public Date expiryDate;
+    public LocalDate createDate;
 
-    public Date createDate;
+    public LocalDate expiryDate;
+
 
     public double price;
 
@@ -20,7 +23,7 @@ public class Food {
     public Food() {
     }
 
-    public Food(String name, Date expiryDate, Date createDate,
+    public Food(String name, LocalDate createDate, LocalDate expiryDate,
                 double price, double discount) {
         this.name = name;
         this.expiryDate = expiryDate;
@@ -38,19 +41,19 @@ public class Food {
         this.name = name;
     }
 
-    public Date getExpiryDate() {
+    public LocalDate getExpiryDate() {
         return expiryDate;
     }
 
-    public void setExpiryDate(Date expiryDate) {
+    public void setExpiryDate(LocalDate expiryDate) {
         this.expiryDate = expiryDate;
     }
 
-    public Date getCreateDate() {
+    public LocalDate getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(LocalDate createDate) {
         this.createDate = createDate;
     }
 
@@ -74,10 +77,31 @@ public class Food {
     public String toString() {
         return "Food{"
                 + "name='" + name + '\''
-                + ", expiryDate=" + expiryDate
                 + ", createDate=" + createDate
+                + ", expiryDate=" + expiryDate
                 + ", price=" + price
                 + ", discount=" + discount
                 + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Food food = (Food) o;
+        return Double.compare(food.price, price) == 0
+                && Double.compare(food.discount, discount) == 0
+                && Objects.equals(name, food.name)
+                && Objects.equals(createDate, food.createDate)
+                && Objects.equals(expiryDate, food.expiryDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, createDate, expiryDate, price, discount);
     }
 }

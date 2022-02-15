@@ -1,18 +1,28 @@
 package ru.job4j.food;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Shop implements FoodStore {
+
+    private static  List<Food> shopStore = new ArrayList<>();
+
+    public static final double DISCOUNT_PERCENT = 0.5;
+
+    public  static List<Food> get() {
+        return shopStore;
+    }
+
     @Override
-    public boolean control(Food product) {
-        boolean result = false;
+    public void add(Food product, double rottenness) {
+        if (rottenness > 0.25 && 0.75 > rottenness) {
+            shopStore.add(product);
+        } else {
+            product.setDiscount(product.getPrice() * DISCOUNT_PERCENT);
+            shopStore.add(product);
+        }
 
-        return result;
 
     }
 
-    public static void main(String[] args) {
-        Date date = new Date();
-        
-    }
 }
