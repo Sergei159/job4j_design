@@ -37,7 +37,7 @@ public class ReportEngineTest {
         store.add(worker);
         Report engine = new HtmlReport(store);
         StringBuilder expect = new StringBuilder()
-            .append("<!DOCTYPE html>").append("\r").append("\n")
+            .append("<!DOCTYPE html>").append(System.lineSeparator())
             .append("<html>").append("\r").append("\n")
             .append("<head>").append("\r").append("\n")
             .append("<body>").append("\r").append("\n")

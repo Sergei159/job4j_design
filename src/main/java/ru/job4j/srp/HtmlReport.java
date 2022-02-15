@@ -13,7 +13,7 @@ public class HtmlReport implements Report {
     @Override
     public String generate(Predicate<Employee> filter) {
         StringBuilder text = new StringBuilder();
-        text.append("<!DOCTYPE html>").append("\r").append("\n")
+        text.append("<!DOCTYPE html>").append(System.lineSeparator())
             .append("<html>").append("\r").append("\n")
             .append("<head>").append("\r").append("\n")
             .append("<body>").append("\r").append("\n")
