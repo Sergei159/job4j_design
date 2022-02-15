@@ -19,7 +19,7 @@ public class ReportEngine implements Report {
                     .append(employee.getHired()).append(";")
                     .append(employee.getFired()).append(";")
                     .append(employee.getSalary()).append(";")
-                    .append("\r").append("\n");
+                    .append(System.lineSeparator());
         }
         return text.toString();
     }

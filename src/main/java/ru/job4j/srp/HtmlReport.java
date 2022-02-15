@@ -14,9 +14,9 @@ public class HtmlReport implements Report {
     public String generate(Predicate<Employee> filter) {
         StringBuilder text = new StringBuilder();
         text.append("<!DOCTYPE html>").append(System.lineSeparator())
-            .append("<html>").append("\r").append("\n")
-            .append("<head>").append("\r").append("\n")
-            .append("<body>").append("\r").append("\n")
+            .append("<html>").append(System.lineSeparator())
+            .append("<head>").append(System.lineSeparator())
+            .append("<body>").append(System.lineSeparator())
             .append("<tr>")
                 .append("<td>Name</td>")
                 .append("<td>Hired</td>")

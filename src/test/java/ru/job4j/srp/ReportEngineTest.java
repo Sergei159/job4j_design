@@ -20,12 +20,12 @@ public class ReportEngineTest {
         Report engine = new ReportEngine(store);
         StringBuilder expect = new StringBuilder()
                 .append("Name; Hired; Fired; Salary;")
-                .append("\r").append("\n")
+                .append(System.lineSeparator())
                 .append(worker.getName()).append(";")
                 .append(worker.getHired()).append(";")
                 .append(worker.getFired()).append(";")
                 .append(worker.getSalary()).append(";")
-                .append("\r").append("\n");
+                .append(System.lineSeparator());
         assertThat(engine.generate(em -> true), is(expect.toString()));
     }
 
@@ -38,9 +38,9 @@ public class ReportEngineTest {
         Report engine = new HtmlReport(store);
         StringBuilder expect = new StringBuilder()
             .append("<!DOCTYPE html>").append(System.lineSeparator())
-            .append("<html>").append("\r").append("\n")
-            .append("<head>").append("\r").append("\n")
-            .append("<body>").append("\r").append("\n")
+            .append("<html>").append(System.lineSeparator())
+            .append("<head>").append(System.lineSeparator())
+            .append("<body>").append(System.lineSeparator())
             .append("<tr>")
                 .append("<td>Name</td>")
                 .append("<td>Hired</td>")
@@ -66,12 +66,12 @@ public class ReportEngineTest {
         Report engine = new DollarSalaryReport(store);
         StringBuilder expect = new StringBuilder()
                 .append("Name; Hired; Fired; Salary;")
-                .append("\r").append("\n")
+                .append(System.lineSeparator())
                 .append(worker.getName()).append(";")
                 .append(worker.getHired()).append(";")
                 .append(worker.getFired()).append(";")
                 .append(worker.getSalary() / DollarSalaryReport.DOLLAR).append(";")
-                .append("\r").append("\n");
+                .append(System.lineSeparator());
         assertThat(engine.generate(em -> true), is(expect.toString()));
     }
 
@@ -88,13 +88,13 @@ public class ReportEngineTest {
         Report engine = new DescSortReport(store);
         StringBuilder expect = new StringBuilder()
                 .append("Name; Hired; Fired; Salary;")
-                .append("\r").append("\n")
+                .append(System.lineSeparator())
                 .append(firstWorker.getName()).append(";")
                 .append(firstWorker.getSalary()).append(";")
-                .append("\r").append("\n")
+                .append(System.lineSeparator())
                 .append(secondWorker.getName()).append(";")
                 .append(secondWorker.getSalary()).append(";")
-                .append("\r").append("\n");
+                .append(System.lineSeparator());
         assertThat(engine.generate(em -> true), is(expect.toString()));
     }
 
