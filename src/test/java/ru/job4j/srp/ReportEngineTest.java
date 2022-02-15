@@ -70,7 +70,7 @@ public class ReportEngineTest {
                 .append(worker.getName()).append(";")
                 .append(worker.getHired()).append(";")
                 .append(worker.getFired()).append(";")
-                .append(worker.getSalary() / 80).append(";")
+                .append(worker.getSalary() / DollarSalaryReport.DOLLAR).append(";")
                 .append("\r").append("\n");
         assertThat(engine.generate(em -> true), is(expect.toString()));
     }

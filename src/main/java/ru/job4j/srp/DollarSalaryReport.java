@@ -4,7 +4,7 @@ import java.util.function.Predicate;
 
 public class DollarSalaryReport implements Report {
 
-    private final double dollar = 80d;
+    public static final double DOLLAR = 80d;
 
     private Store store;
 
@@ -20,7 +20,7 @@ public class DollarSalaryReport implements Report {
             text.append(employee.getName()).append(";")
                     .append(employee.getHired()).append(";")
                     .append(employee.getFired()).append(";")
-                    .append(employee.getSalary() / dollar).append(";")
+                    .append(employee.getSalary() / DOLLAR).append(";")
                     .append("\r").append("\n");
         }
         return text.toString();
