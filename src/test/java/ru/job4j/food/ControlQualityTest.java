@@ -11,47 +11,7 @@ import static org.hamcrest.Matchers.is;
 
 public class ControlQualityTest {
 
-    @Test
-    public void whenDiscount() {
-        Food fish = new Fish(
-                "fish",
-                LocalDate.of(2022, 02, 10),
-                LocalDate.of(2022, 02, 18),
-                500,
-                0
-                );
-        ControlQuality.defineQuality(fish);
-        List<Food> expected = new ArrayList<>();
-        expected.add(new Fish(
-                "fish",
-                LocalDate.of(2022, 02, 10),
-                LocalDate.of(2022, 02, 18),
-                500,
-                500 * Shop.DISCOUNT_PERCENT
-        ));
-        assertThat(expected, is(Shop.get()));
-    }
 
-    @Test
-    public void whenIsInShopWithoutDiscount() {
-        Food bread = new Bakery(
-                "bread",
-                LocalDate.of(2022, 02, 10),
-                LocalDate.of(2022, 02, 25),
-                500,
-                0
-        );
-        ControlQuality.defineQuality(bread);
-        List<Food> expected = new ArrayList<>();
-        expected.add(new Bakery(
-                "bread",
-                LocalDate.of(2022, 02, 10),
-                LocalDate.of(2022, 02, 25),
-                500,
-                0
-        ));
-        assertThat(expected, is(Shop.get()));
-    }
 
     @Test
     public void whenIsInWareHouse() {
@@ -109,6 +69,27 @@ public class ControlQualityTest {
                 ));
 
         assertThat(expected, is(Trash.get()));
+    }
+
+    @Test
+    public void whenDiscount() {
+        Food fish = new Fish(
+                "fish",
+                LocalDate.of(2022, 02, 10),
+                LocalDate.of(2022, 02, 18),
+                500,
+                0
+        );
+        ControlQuality.defineQuality(fish);
+        List<Food> expected = new ArrayList<>();
+        expected.add(new Fish(
+                "fish",
+                LocalDate.of(2022, 02, 10),
+                LocalDate.of(2022, 02, 18),
+                500,
+                500 * Shop.DISCOUNT_PERCENT
+        ));
+        assertThat(Shop.get(), is(expected));
     }
 
 }
