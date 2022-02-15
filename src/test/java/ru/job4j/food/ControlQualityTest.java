@@ -87,7 +87,7 @@ public class ControlQualityTest {
                 LocalDate.of(2022, 02, 10),
                 LocalDate.of(2022, 02, 18),
                 500,
-                500 * Shop.DISCOUNT_PERCENT
+                250
         ));
         assertThat(Shop.get(), is(expected));
     }
