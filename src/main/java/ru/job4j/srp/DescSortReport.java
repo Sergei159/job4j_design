@@ -14,7 +14,7 @@ public class DescSortReport  implements Report {
     @Override
     public String generate(Predicate<Employee> filter) {
         StringBuilder text = new StringBuilder();
-        text.append("Name; Hired; Fired; Salary;\r\n");
+        text.append("Name; Hired; Fired; Salary;");
         List<Employee> workers = store.findBy(filter);
         workers.sort(Comparator.comparingDouble(Employee::getSalary).reversed());
         for (Employee employee : workers) {

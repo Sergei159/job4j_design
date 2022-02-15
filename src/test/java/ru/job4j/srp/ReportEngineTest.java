@@ -20,7 +20,6 @@ public class ReportEngineTest {
         Report engine = new ReportEngine(store);
         StringBuilder expect = new StringBuilder()
                 .append("Name; Hired; Fired; Salary;")
-                .append(System.lineSeparator())
                 .append(worker.getName()).append(";")
                 .append(worker.getHired()).append(";")
                 .append(worker.getFired()).append(";")
@@ -66,7 +65,6 @@ public class ReportEngineTest {
         Report engine = new DollarSalaryReport(store);
         StringBuilder expect = new StringBuilder()
                 .append("Name; Hired; Fired; Salary;")
-                .append(System.lineSeparator())
                 .append(worker.getName()).append(";")
                 .append(worker.getHired()).append(";")
                 .append(worker.getFired()).append(";")
@@ -88,7 +86,6 @@ public class ReportEngineTest {
         Report engine = new DescSortReport(store);
         StringBuilder expect = new StringBuilder()
                 .append("Name; Hired; Fired; Salary;")
-                .append(System.lineSeparator())
                 .append(firstWorker.getName()).append(";")
                 .append(firstWorker.getSalary()).append(";")
                 .append(System.lineSeparator())
