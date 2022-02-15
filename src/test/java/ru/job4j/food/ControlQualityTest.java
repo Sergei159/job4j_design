@@ -75,8 +75,8 @@ public class ControlQualityTest {
     public void whenDiscount() {
         Food fish = new Fish(
                 "fish",
-                LocalDate.of(2022, 02, 10),
-                LocalDate.of(2022, 02, 18),
+                LocalDate.of(2022, 02, 1),
+                LocalDate.of(2022, 02, 20),
                 500,
                 0
         );
@@ -84,8 +84,8 @@ public class ControlQualityTest {
         List<Food> expected = new ArrayList<>();
         expected.add(new Fish(
                 "fish",
-                LocalDate.of(2022, 02, 10),
-                LocalDate.of(2022, 02, 18),
+                LocalDate.of(2022, 02, 1),
+                LocalDate.of(2022, 02, 20),
                 500,
                 250
         ));
