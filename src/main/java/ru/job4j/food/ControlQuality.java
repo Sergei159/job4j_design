@@ -1,27 +1,32 @@
 package ru.job4j.food;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * Метод сортирует продукты по разным хранилищам. Для этого нужно создать
+ * лист с продуктами и лист с хранилищами.
+ * Из листа с продуктами метод будет пытаться добавить каждый продукт в каждое
+ * хранилище из списка хранилищ.
+ */
 public class ControlQuality {
+    /**
+     * Лист с хранилищами
+     */
+    private  List<FoodStore> foodStoreList = new ArrayList<>();
 
-    public static void defineQuality(Food product) {
-        LocalDate now = LocalDate.now();
-        LocalDate created = product.getCreateDate();
-        LocalDate expired = product.getExpiryDate();
-        double rottenness = ((double) (now.getDayOfYear() - created.getDayOfYear()) / (double) (expired.getDayOfYear() - created.getDayOfYear()));
-        sort(product, rottenness);
+    public ControlQuality(List<FoodStore> foodStoreList) {
+        this.foodStoreList = foodStoreList;
     }
 
-    private static void sort(Food product, double rottenness) {
-        if (rottenness >= 0.25 &&  1 > rottenness) {
-            Shop shop = new Shop();
-            shop.add(product, rottenness);
-        } else if (rottenness < 0.25 && 0 <= rottenness) {
-            Warehouse wh = new Warehouse();
-            wh.add(product, rottenness);
-        } else {
-            Trash trash = new Trash();
-            trash.add(product, rottenness);
+    /**
+     * метод будет пытаться добавить food в каждый из возможных вариантов
+     * из foodStoreList. Если метод add интерфейса FoodStore вернул true, прекращаем
+     * цикл, так как один продукт не может находиться в разных хранилищах
+     */
+    public  void sort(Food food) {
+        for (FoodStore store : foodStoreList) {
+            store.add(food);
         }
     }
 
