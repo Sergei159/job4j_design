@@ -1,14 +1,26 @@
 package ru.job4j.parking;
 
-public class MixedPark implements Parking {
-    private int countOfPlaces;
+import java.util.ArrayList;
+import java.util.List;
 
-    public MixedPark(int countOfPlaces) {
-        this.countOfPlaces = countOfPlaces;
+public class MixedPark implements Parking {
+    private int carPlaces;
+    private int truckPlaces;
+
+    private List<Transport> transportList;
+
+    public List<Transport> get() {
+        return new ArrayList<>(transportList);
     }
 
+    public MixedPark(int carPlaces, int truckPlaces) {
+        this.carPlaces = carPlaces;
+        this.truckPlaces = truckPlaces;
+    }
+
+
     @Override
-    public boolean create(Transport transport) {
+    public boolean park(Transport transport) {
         return true;
     }
 }
