@@ -5,26 +5,22 @@ import java.util.List;
 
 public class Trash implements FoodStore {
 
-    private static final List<Food> TRASH_STORE = new ArrayList<>();;
+    private List<Food> trashStore = new ArrayList<>();;
 
     /**
      * @return метод возвращает копию листа с продуктами, находящихся
      * в хранилище данного класса
      */
 
-    public static List<Food> get() {
-        List<Food> copy = new ArrayList<>();
-        for (Food food : TRASH_STORE) {
-            copy.add(food);
-        }
-        return copy;
+    public List<Food> get() {
+        return new ArrayList<>(trashStore);
     }
 
     @Override
     public boolean add(Food food) {
         boolean result = false;
         if (accept(food)) {
-            TRASH_STORE.add(food);
+            trashStore.add(food);
             result = true;
         }
         return result;

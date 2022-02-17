@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Warehouse implements FoodStore {
-    private static final List<Food> WAREHOUSE_STORE = new ArrayList<>();;
+    private  List<Food> warehouseStore = new ArrayList<>();;
 
     /**
      * @return метод возвращает копию листа с продуктами, находящихся
@@ -12,12 +12,8 @@ public class Warehouse implements FoodStore {
      */
 
 
-    public static List<Food> get() {
-            List<Food> copy = new ArrayList<>();
-            for (Food food : WAREHOUSE_STORE) {
-                copy.add(food);
-            }
-            return copy;
+    public List<Food> get() {
+            return new ArrayList<>(warehouseStore);
         }
 
 
@@ -25,7 +21,7 @@ public class Warehouse implements FoodStore {
     public boolean add(Food food) {
         boolean result = false;
         if (accept(food)) {
-            WAREHOUSE_STORE.add(food);
+            warehouseStore.add(food);
             result = true;
         }
         return result;

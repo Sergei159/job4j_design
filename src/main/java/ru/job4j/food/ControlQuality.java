@@ -21,12 +21,14 @@ public class ControlQuality {
 
     /**
      * метод будет пытаться добавить food в каждый из возможных вариантов
-     * из foodStoreList. Если метод add интерфейса FoodStore вернул true, прекращаем
-     * цикл, так как один продукт не может находиться в разных хранилищах
+     * из foodStoreList. Если метод accept интерфейса FoodStore вернул true,
+     * то добавляем в это хранилище продукт
      */
     public  void sort(Food food) {
         for (FoodStore store : foodStoreList) {
-            store.add(food);
+            if (store.accept(food)) {
+                store.add(food);
+            }
         }
     }
 
