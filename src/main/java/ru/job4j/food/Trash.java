@@ -17,6 +17,11 @@ public class Trash implements FoodStore {
     }
 
     @Override
+    public void clear() {
+        trashStore.clear();
+    }
+
+    @Override
     public boolean add(Food food) {
         boolean result = false;
         if (accept(food)) {

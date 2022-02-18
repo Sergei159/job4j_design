@@ -27,6 +27,11 @@ public class Warehouse implements FoodStore {
         return result;
     }
 
+    @Override
+    public void clear() {
+        warehouseStore.clear();
+    }
+
     /**
      * Метод проверяет условие, подходит ли продукт для хранилища данного класса.
      * Условие - Продукт испорчен не более чем на 25% от срока годности.

@@ -11,6 +11,8 @@ public interface FoodStore {
 
      List<Food> get();
 
+     void clear();
+
 
      default double defineRestOfTheFreshness(Food food) {
           LocalDate now = LocalDate.now();

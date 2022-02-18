@@ -18,6 +18,11 @@ public class Shop implements FoodStore {
         return new ArrayList<>(shopStore);
     }
 
+    @Override
+    public void clear() {
+        shopStore.clear();
+    }
+
 
     @Override
     public boolean add(Food food) {

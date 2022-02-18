@@ -36,6 +36,7 @@ public class ControlQuality {
         List<Food> fullFoodList = new ArrayList<>();
         for (FoodStore store : foodStoreList) {
             fullFoodList.addAll(store.get());
+            store.clear();
         }
         for (Food food : fullFoodList) {
             sort(food);
