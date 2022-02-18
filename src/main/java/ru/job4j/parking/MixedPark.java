@@ -34,8 +34,7 @@ public class MixedPark implements Parking {
             transportList.add(transport);
             carPlaces--;
             result = true;
-        }
-        if (transport.getSize() > GeneralCar.SIZE) {
+        } else if (transport.getSize() > GeneralCar.SIZE) {
             if (truckPlaces > 0) {
                transportList.add(transport);
                truckPlaces--;
