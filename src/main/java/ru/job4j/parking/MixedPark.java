@@ -3,6 +3,14 @@ package ru.job4j.parking;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Легковая машина может занять только место, предназначенное для легковой машины.
+ * Грузовая машина может разместиться на месте, предназначенном для грузовых машин,
+ * либо на N парковочных мест для легковых машин, стоящих рядом.
+ *
+ * Легковой считается машина у которой размер равен 1, а грузовой у которой размер > 1.
+ */
+
 public class MixedPark implements Parking {
     private int carPlaces;
     private int truckPlaces;
