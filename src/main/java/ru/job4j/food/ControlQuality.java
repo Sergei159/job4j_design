@@ -32,5 +32,15 @@ public class ControlQuality {
         }
     }
 
+    public void resort() {
+        List<Food> fullFoodList = new ArrayList<>();
+        for (FoodStore store : foodStoreList) {
+            fullFoodList.addAll(store.get());
+        }
+        for (Food food : fullFoodList) {
+            sort(food);
+        }
+    }
+
 }
 

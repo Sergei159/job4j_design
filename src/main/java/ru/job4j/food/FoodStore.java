@@ -1,12 +1,15 @@
 package ru.job4j.food;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public interface FoodStore {
 
      boolean add(Food product);
 
      boolean accept(Food food);
+
+     List<Food> get();
 
 
      default double defineRestOfTheFreshness(Food food) {

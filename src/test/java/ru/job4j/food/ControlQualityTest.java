@@ -158,4 +158,50 @@ public class ControlQualityTest {
         assertThat(shop.get(), is(expected));
     }
 
+    @Test
+    public void whenResort() {
+        Shop shop = new Shop();
+        Warehouse warehouse = new Warehouse();
+        Trash trash = new Trash();
+        List<FoodStore> foodStoreList = List.of(shop, warehouse, trash);
+
+        Food bread = new Bakery(
+                "bread",
+                LocalDate.now().minusDays(1),
+                LocalDate.now().plusDays(6),
+                500,
+                50
+        );
+
+        Food chicken = new Meat(
+                "chicken",
+                LocalDate.now().minusDays(15),
+                LocalDate.now().plusDays(2),
+                500,
+                10
+        );
+        Food bacon = new Meat(
+                "bacon",
+                LocalDate.now().minusDays(10),
+                LocalDate.now().minusDays(1),
+                700,
+                20
+        );
+        List<Food> foodList = List.of(bread, chicken, bacon);
+        ControlQuality controlQuality = new ControlQuality(foodStoreList);
+        foodList.forEach(controlQuality::sort);
+
+        Food badChicken = new Meat(
+                "chicken",
+                LocalDate.now().minusDays(15),
+                LocalDate.now().plusDays(2),
+                405,
+                10
+        );
+
+        List<Food> expected = List.of(bread, badChicken, bacon);
+        controlQuality.resort();
+        assertThat(foodList, is(expected));
+    }
+
 }

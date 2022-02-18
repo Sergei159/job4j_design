@@ -11,7 +11,7 @@ public class Trash implements FoodStore {
      * @return метод возвращает копию листа с продуктами, находящихся
      * в хранилище данного класса
      */
-
+    @Override
     public List<Food> get() {
         return new ArrayList<>(trashStore);
     }

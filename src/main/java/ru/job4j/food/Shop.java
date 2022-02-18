@@ -5,17 +5,19 @@ import java.util.List;
 
 public class Shop implements FoodStore {
 
-    private  List<Food> shopStore = new ArrayList<>();
 
+    private List<Food> shopStore = new ArrayList<>();
 
 
     /**
      * @return метод возвращает копию листа с продуктами, находящихся
      * в хранилище данного класса
      */
+    @Override
     public List<Food> get() {
         return new ArrayList<>(shopStore);
     }
+
 
     @Override
     public boolean add(Food food) {
@@ -23,7 +25,7 @@ public class Shop implements FoodStore {
         if (accept(food)) {
             double restOfFreshness = defineRestOfTheFreshness(food);
             if (restOfFreshness >= 0.75) {
-                food.setPrice(food.getPrice() * food.getDiscount() * 0.01);
+                food.setPrice(food.getPrice() - food.getPrice() * food.getDiscount() * 0.01);
             }
             shopStore.add(food);
             result = true;
@@ -42,10 +44,10 @@ public class Shop implements FoodStore {
     public boolean accept(Food food) {
         boolean result = false;
         double restOfFreshness = defineRestOfTheFreshness(food);
-        if (restOfFreshness >= 0.25 &&  1 > restOfFreshness) {
+        if (restOfFreshness >= 0.25 && 1 > restOfFreshness) {
             result = true;
         }
-          return result;
-        }
-
+        return result;
+    }
 }
+
