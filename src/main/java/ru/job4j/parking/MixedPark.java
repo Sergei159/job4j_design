@@ -22,22 +22,19 @@ public class MixedPark implements Parking {
     @Override
     public boolean park(Transport transport) {
         boolean result = false;
-        if (carPlaces == 0 && truckPlaces == 0) {
-            return false;
-        }
-        if (transport.getClass().equals(GeneralCar.class) && carPlaces != 0) {
+        if (transport.getSize() == GeneralCar.SIZE && carPlaces != 0) {
             transportList.add(transport);
             carPlaces--;
             result = true;
         }
-        if (transport.getClass().equals(Truck.class)) {
+        if (transport.getSize() > GeneralCar.SIZE) {
             if (truckPlaces > 0) {
                transportList.add(transport);
                truckPlaces--;
                result = true;
-            } else if (((Truck) transport).getSize() <= carPlaces) {
+            } else if (transport.getSize() <= carPlaces) {
                 transportList.add(transport);
-                carPlaces -= ((Truck) transport).getSize();
+                carPlaces -= transport.getSize();
                 result = true;
             }
         }

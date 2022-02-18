@@ -8,6 +8,7 @@ public class Truck implements Transport {
         this.size = size;
     }
 
+    @Override
     public int getSize() {
         return size;
     }
