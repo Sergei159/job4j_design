@@ -44,7 +44,6 @@ public class MixedPark implements Parking {
             carPlaces -= transport.getSize();
             result = true;
         }
-
         return result;
     }
 }
