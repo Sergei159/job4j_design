@@ -1,4 +1,4 @@
-package ru.job4j.parking;
+package ru.job4j.ood.parking;
 
 import org.junit.Test;
 

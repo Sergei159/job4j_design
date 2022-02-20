@@ -1,4 +1,4 @@
-package ru.job4j.parking;
+package ru.job4j.ood.parking;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
  * Грузовая машина может разместиться на месте, предназначенном для грузовых машин,
  * либо на N парковочных мест для легковых машин, стоящих рядом.
  *
- * Легковой считается машина у которой размер равен 1, а грузовой у которой размер > 1.
+ * Легковой считается машина у которой размер равен 1, а грузовой - размер > 1.
  */
 
 public class MixedPark implements Parking {
@@ -30,21 +30,21 @@ public class MixedPark implements Parking {
     @Override
     public boolean park(Transport transport) {
         boolean result = false;
+        boolean isTruck = transport.getSize() > GeneralCar.SIZE;
         if (transport.getSize() == GeneralCar.SIZE && carPlaces != 0) {
             transportList.add(transport);
             carPlaces--;
             result = true;
-        } else if (transport.getSize() > GeneralCar.SIZE) {
-            if (truckPlaces > 0) {
-               transportList.add(transport);
-               truckPlaces--;
-               result = true;
-            } else if (transport.getSize() <= carPlaces) {
-                transportList.add(transport);
-                carPlaces -= transport.getSize();
-                result = true;
-            }
+        } else if (isTruck && truckPlaces > 0)  {
+           transportList.add(transport);
+           truckPlaces--;
+           result = true;
+        } else if (isTruck && transport.getSize() <= carPlaces) {
+            transportList.add(transport);
+            carPlaces -= transport.getSize();
+            result = true;
         }
+
         return result;
     }
 }
