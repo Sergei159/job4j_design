@@ -10,13 +10,13 @@ public class CharCounter {
             if (chars[i - 1] == chars[i]) {
                 counter++;
             } else {
-                result.append(Integer.toString(counter))
+                result.append(counter)
                         .append(chars[i - 1])
                         .append(" ");
                 counter = 1;
             }
             if (i == chars.length - 1) {
-                result.append(Integer.toString(counter)).append(chars[i]);
+                result.append(counter).append(chars[i]);
             }
 
         }
