@@ -1,3 +1,9 @@
+
+/*  Выполнить запросы с left, right, full, cross соединениями
+*/
+
+
+
 create table departments (
 	id serial primary key,
 	name varchar(255)

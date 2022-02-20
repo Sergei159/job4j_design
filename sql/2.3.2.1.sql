@@ -1,3 +1,11 @@
+/**
+
+1. Придумать две таблицы и связь между ними
+
+2. Написать 3 запроса с inner join с использованием альясов
+
+
+*/
 create table driver_licence(
     id serial primary key,
 	series int,
