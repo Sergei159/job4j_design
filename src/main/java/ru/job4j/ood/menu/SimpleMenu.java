@@ -13,6 +13,7 @@ public class SimpleMenu implements Menu {
 
     @Override
     public Optional<MenuItemInfo> select(String itemName) {
+        Optional<ItemInfo> result = findItem(itemName);
         return Optional.empty();
 
     }
@@ -23,7 +24,16 @@ public class SimpleMenu implements Menu {
     }
 
     private Optional<ItemInfo> findItem(String name) {
-        return Optional.empty();
+       Optional<ItemInfo> result = Optional.empty();
+       DFSIterator dfsIterator = new DFSIterator();
+       while (dfsIterator.hasNext()) {
+           var next = dfsIterator.next();
+           if (next.menuItem.getName().equals(name)) {
+               result = Optional.of(next);
+               break;
+           }
+       }
+        return result;
     }
 
     private static class SimpleMenuItem implements MenuItem {
